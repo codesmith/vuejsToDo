@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Vue.js App</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- ToDo テーブル -->
+    <!-- 絞りこみラジオボタン -->
+    <label v-for="label in options">
+      <input type="radio" v-model="current" v-bind:value="label.value"> {{ label.label }}
+    </label>
+    <h4>{{ computedTodos.length }} 件を表示中</h4>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th class="id">ID</th>
+          <th class="comment">コメント</th>
+          <th class="state">状態</th>
+          <th class="button">-</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ここに<tr>でToDoの要素を1行ずつ繰り返し表示したい。 -->
+        <tr v-for="item in computedTodos" v-bind:key="item.id">
+          <th>{{ item.id }}</th>
+          <td>{{ item.comment }}</td>
+
+          <td class="state">
+            <!-- 状態変更ボタンのモック -->
+            <button v-on:click="doChangeState(item)">
+              {{ labels[item.state] }}
+            </button>
+          </td>
+
+          <td class="button">
+            <!-- 削除ボタンのモック -->
+            <button v-on:click.ctrl="doRemove(item)">
+              削除
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+    <p>※削除ボタンはコントロールキーを押しながらクリックしてください。</p>
+
+
+    <!-- 新規登録フォーム -->
+    <h2>新しい作業の追加</h2>
+    <form action="" class="add-form" v-on:submit.prevent="doAdd">
+      <!-- コメント入力フォーム -->
+      コメント<input type="text" ref="comment">
+
+      <!-- 追加ボタンのモック -->
+      <button type="submit">追加</button>
+    </form>
+
+  </div>
+
+  <!-- <script scr="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>
