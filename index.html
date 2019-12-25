@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <!-- ここに<tr>でToDoの要素を1行ずつ繰り返し表示したい。 -->
-        <tr v-for="item in computedTodos" v-bind:key="item.id">
+        <tr v-for="item in computedTodos" v-bind:key="item.id" v-bind:class="{done:item.state}">
           <th>{{ item.id }}</th>
           <td>{{ item.comment }}</td>
 
